@@ -1,0 +1,61 @@
+
+Here's one occurance on v4.1.8-382:
+{code}
+$ ./mongodb/bin/mongod --version
+db version v4.1.8-382-gbe65d84da8
+git version: be65d84da8e84ea99a1075339bd49a23a688d756
+allocator: system
+modules: enterprise
+build environment:
+    distarch: x86_64
+    target_arch: x86_64
+
+...
+
+ERROR: test_collection_names (test_database.TestDatabase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/mci/a51931af1ce2ae3cb98e1d92f2d8bbfa/src/test/test_database.py", line 189, in test_collection_names
+    self._test_collection_names('collection_names', True)
+  File "/data/mci/a51931af1ce2ae3cb98e1d92f2d8bbfa/src/test/test_database.py", line 186, in _test_collection_names
+    self.client.drop_database("many_collections")
+  File "/data/mci/a51931af1ce2ae3cb98e1d92f2d8bbfa/src/pymongo/mongo_client.py", line 1811, in drop_database
+    session=session)
+  File "/data/mci/a51931af1ce2ae3cb98e1d92f2d8bbfa/src/pymongo/database.py", line 514, in _command
+    client=self.__client)
+  File "/data/mci/a51931af1ce2ae3cb98e1d92f2d8bbfa/src/pymongo/pool.py", line 584, in command
+    self._raise_connection_failure(error)
+  File "/data/mci/a51931af1ce2ae3cb98e1d92f2d8bbfa/src/pymongo/pool.py", line 745, in _raise_connection_failure
+    raise error
+NotMasterError: dropDatabase many_collections failed waiting for 101 collection drop(s) (most recent drop optime: { ts: Timestamp(1552458388, 58), t: 2 }) to replicate. :: caused by :: operation was interrupted
+{code}
+https://evergreen.mongodb.com/task/mongo_python_driver_tests_ssl_requires_32__os_ssl_requires_32~macos_1012_auth~auth_ssl~ssl_test_latest_replica_set_59c3a22115bcbfdb71f5b84c1e82d888674a3948_19_03_13_00_57_58
+
+Here's another occurance, this time on v4.1.9-17:
+{code}
+$ ./mongodb/bin/mongod --version
+db version v4.1.9-17-g0a85682
+git version: 0a856820ba29e19dcba0979f71b11ae01f4be0f1
+allocator: system
+modules: enterprise
+build environment:
+    distarch: x86_64
+    target_arch: x86_64
+
+...
+
+ERROR: test_causal_consistency (test_examples.TestCausalConsistencyExamples)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/mci/c8093c14e4d2688456d07ee4b81acd20/src/pymongo/mongo_client.py", line 1811, in drop_database
+    session=session)
+  File "/data/mci/c8093c14e4d2688456d07ee4b81acd20/src/pymongo/database.py", line 514, in _command
+    client=self.__client)
+  File "/data/mci/c8093c14e4d2688456d07ee4b81acd20/src/pymongo/pool.py", line 584, in command
+    self._raise_connection_failure(error)
+  File "/data/mci/c8093c14e4d2688456d07ee4b81acd20/src/pymongo/pool.py", line 745, in _raise_connection_failure
+    raise error
+NotMasterError: dropDatabase test failed waiting for 1 collection drop(s) (most recent drop optime: { ts: Timestamp(1552680541, 1), t: 1 }) to replicate. :: caused by :: Received stepdown request while waiting for replication
+
+{code}
+https://evergreen.mongodb.com/task/mongo_python_driver_tests_ssl_requires_32__os_ssl_requires_32~macos_1012_auth~auth_ssl~ssl_test_latest_replica_set_923229de12f1a1b2faa3c3d9e0a6a5f7b1052f85_19_03_14_23_24_36
