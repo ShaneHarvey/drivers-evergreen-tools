@@ -39,7 +39,7 @@ elif $PYTHON -m virtualenv --system-site-packages --never-download venv || virtu
     . venv/Scripts/activate
   fi
   # Install from github to get the latest mongo-orchestration.
-  pip install --upgrade 'git+git://github.com/mongodb/mongo-orchestration@master'
+  pip install --upgrade 'git+git://github.com/ShaneHarvey/mongo-orchestration@PYTHON-2470'
   pip list
 fi
 cd -
