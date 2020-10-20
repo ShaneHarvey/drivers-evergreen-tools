@@ -63,12 +63,10 @@ else
   fi
 fi
 
-# PYTHON-2298 Reset the file descriptor ulimit to 64000 to avoid errors like:
+# Increase file descriptor ulimit to avoid errors like:
 # TooManyFilesOpen: 24: Too many open files
-# Some evergreen task is descreasing the limit to 256.
 if [ "$(uname -s)" = "Darwin" ]; then
   ulimit -a
-  ulimit -n 64000
 fi
 
 
