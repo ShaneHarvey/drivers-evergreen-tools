@@ -13,9 +13,10 @@ const config = readSetupJson();
 
 const caFile = CERT_DIRECTORY + config["kms_ca_file"];
 const certFile = CERT_DIRECTORY + config["kms_cert_file"];
+const port = config["kms_port"] || 8000;
 
 const pythonCommand = getPython3Binary() +
-    ` -u lib/kms_http_server.py --ca_file ${caFile} --cert_file ${certFile}`;
+    ` -u lib/kms_http_server.py --ca_file ${caFile} --cert_file ${certFile} --port ${port}`;
 const ret = runShellCmdWithEnv(pythonCommand, {});
 
 assert.eq(ret, 0, "Failed to start kms mock server");

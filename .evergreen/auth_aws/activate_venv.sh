@@ -8,8 +8,8 @@ fi
 
 # create venv on first run
 if [ ! -d authawsvenv ]; then
-   FIRST_RUN=1
-   virtualenv -p ${PYTHON_BINARY} authawsvenv
+  FIRST_RUN=1
+  ${PYTHON_BINARY} -m venv authawsvenv
 fi
 
 # always activate venv
