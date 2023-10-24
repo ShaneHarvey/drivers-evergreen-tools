@@ -7,7 +7,7 @@
         "bind_ip": "127.0.0.1,::1",
         "oplogSize": 500,
         "port": 27017,
-        "storageEngine": "inMemory"
+        "wiredTigerCacheSizeGB": 1
       },
       "rsParams": {
         "tags": {
@@ -22,7 +22,7 @@
         "bind_ip": "127.0.0.1,::1",
         "oplogSize": 500,
         "port": 27018,
-        "storageEngine": "inMemory"
+        "wiredTigerCacheSizeGB": 1
       },
       "rsParams": {
         "tags": {
