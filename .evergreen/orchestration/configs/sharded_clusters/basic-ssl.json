@@ -10,7 +10,8 @@
               "ipv6": true,
               "bind_ip": "127.0.0.1,::1",
               "shardsvr": true,
-              "port": 27217
+              "port": 27217,
+              "storageEngine": "inMemory"
             }
           },
           {
@@ -18,7 +19,8 @@
               "ipv6": true,
               "bind_ip": "127.0.0.1,::1",
               "shardsvr": true,
-              "port": 27218
+              "port": 27218,
+              "storageEngine": "inMemory"
             }
           },
           {
@@ -26,7 +28,8 @@
               "ipv6": true,
               "bind_ip": "127.0.0.1,::1",
               "shardsvr": true,
-              "port": 27219
+              "port": 27219,
+              "storageEngine": "inMemory"
             }
           }
         ]

@@ -5,7 +5,8 @@
       "ipv6": true,
       "bind_ip": "127.0.0.1,::1",
       "logappend": true,
-      "port": 27017
+      "port": 27017,
+      "storageEngine": "inMemory"
    },
    "sslParams": {
       "sslOnNormalPorts": true,
