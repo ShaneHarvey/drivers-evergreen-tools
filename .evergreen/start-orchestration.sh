@@ -13,6 +13,7 @@ fi
 
 set -o errexit  # Exit the script with error if any of the commands fail
 
+set -x
 
 MONGO_ORCHESTRATION_HOME="$1"
 
@@ -37,6 +38,7 @@ echo "Creating virtual environment 'venv'... done."
 # Install from github to get the latest mongo-orchestration, fall back on published wheel.
 # The fallback was added to accommodate versions of Python 3 for which there is no compatible version
 # of the hatchling backend used by mongo-orchestration.
+python -m pip install cheroot 'bottle<0.13'
 python -m pip install -q --upgrade 'https://github.com/mongodb/mongo-orchestration/archive/master.tar.gz' || python -m pip install -q --upgrade mongo-orchestration
 python -m pip list
 cd $DRIVERS_TOOLS
@@ -50,7 +52,6 @@ ORCHESTRATION_ARGUMENTS="-e default -f $MONGO_ORCHESTRATION_HOME/orchestration.c
 if [[ "${OSTYPE:?}" == cygwin ]]; then
   ORCHESTRATION_ARGUMENTS="$ORCHESTRATION_ARGUMENTS -s wsgiref"
 fi
-set -x
 
 # Forcibly kill the process listening on port 8889, most likely a wild
 # mongo-orchestration left running from a previous task.
