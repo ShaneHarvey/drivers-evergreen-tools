@@ -38,7 +38,7 @@ echo "Creating virtual environment 'venv'... done."
 # Install from github to get the latest mongo-orchestration, fall back on published wheel.
 # The fallback was added to accommodate versions of Python 3 for which there is no compatible version
 # of the hatchling backend used by mongo-orchestration.
-python -m pip install cheroot 'bottle<0.13'
+python -m pip install cheroot 'bottle<0.13.1'
 python -m pip install -q --upgrade 'https://github.com/mongodb/mongo-orchestration/archive/master.tar.gz' || python -m pip install -q --upgrade mongo-orchestration
 python -m pip list
 cd $DRIVERS_TOOLS
