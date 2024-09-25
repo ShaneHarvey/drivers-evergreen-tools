@@ -50,6 +50,7 @@ ORCHESTRATION_ARGUMENTS="-e default -f $MONGO_ORCHESTRATION_HOME/orchestration.c
 if [[ "${OSTYPE:?}" == cygwin ]]; then
   ORCHESTRATION_ARGUMENTS="$ORCHESTRATION_ARGUMENTS -s wsgiref"
 fi
+set -x
 
 # Forcibly kill the process listening on port 8889, most likely a wild
 # mongo-orchestration left running from a previous task.
@@ -74,8 +75,6 @@ else
 fi
 
 mongo-orchestration $ORCHESTRATION_ARGUMENTS start > $MONGO_ORCHESTRATION_HOME/out.log 2>&1 < /dev/null &
-
-ls -la $MONGO_ORCHESTRATION_HOME
 
 sleep 5
 if ! curl http://localhost:8889/ --silent --show-error --max-time 120 --fail; then
